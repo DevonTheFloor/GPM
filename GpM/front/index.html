@@ -27,6 +27,24 @@
         <a href="sommaire.html" ><img class="img-fluid logoenter" src="images/logo/icon2.png" alt="icon groupomania"></a>  
         </figure>
       </section>
+      <section>
+        <button>Créer un compte</button>
+        <button>Se connecter</button>
+      </section>
+      <section>
+        <form action="/api/auth/signup" method="post">
+          <label>email : <input type="email" id="email"> </label>
+          <label>Mot de passe: <input type="password" id="pwd"> </label>
+          <button type="submit" >Créer un compte</button>
+        </form>
+      </section>
+      <section>
+        <form action="/api/auth/login" method="post">
+          <label>email : <input type="email" id="email"> </label>
+          <label>Mot de passe: <input type="password" id="pwd"> </label>
+          <button type="submit" >Se connecter</button>
+        </form>
+      </section>
     </main>
     
     <footer>
