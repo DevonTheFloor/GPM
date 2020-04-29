@@ -1,28 +1,20 @@
 
 
-/*function afficherforums(messages){
-  let ancre = document.getElementById('message');
-	ancre.innerHTML="";
-	messages.forEach(message => {
-		let ol = document.createElement('ol');
-    /*let link = document.createElement('a');
-    link.href="/api/forum/post/:id";
-	  let li = document.createElement('li');
-	  li.textContent = message[1];
-	});
-  ancre.appendChild(ol);
-  ol.appendChild(li);
-};*/
-
+/**
+ * requête ajax demande tous les message du forum
+ * @param {string} url 
+ */
 function seeforums(url){
 	const promise = fetch(url);
 	promise.then((forums)=>console.log(forums))
 	.catch(console.log("probleme connecxion serveur"));
 };
 
-window.onload('load',seeforums("/api/forum/posts"));
+//window.onload('load',seeforums("/api/forum/posts"));
 
-
+/**
+ * affiche le formulaire pour poster un message
+ */
 let poster = document.getElementById('postforum');
 
 poster.addEventListener("click", function(){

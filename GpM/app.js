@@ -1,8 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const connectdb = require('./queries/connectdb');
-//const usersRouters = require('./routes/users');
+const usersRouters = require('./routes/users');
 
 var mysql = require('mysql');
 
@@ -20,33 +19,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 
-//app.use('/api/auth',usersRouters);
+app.use('/api/auth',usersRouters);
+
 app.use('/test/',(req,res,next)=>{
   console.log("param", req.params.prama);
   res.status(200).json({message:"test reçu"});
-});
-
-app.post('/api/auth/signup', (req,res,next)=>{
-  console.log('Request Type:', req.method);
-  console.log('url originale', req.originalUrl);
-  console.log("req.body =", req.body);
-  console.log("req.params =", req.params);
-
-  connectdb.connect(function(err){
-    console.log("reqBody dans connect = ",req.body);
-    let email = req.body.email;
-    let mdp = req.body.mdp;
-    if(err) throw err;
-    console.log("Connecté mySQL on Xampp !!");
-    var sql = "INSERT INTO users VALUES(NULL,?,?,NULL)";
-    var inserts = [email,mdp];
-    sql = mysql.format(sql,inserts);
-    connectdb.query(sql, function(err,result){
-        if (err) throw err ;
-        console.log("Utilisateur ajouté");
-        res.redirect("/sommaire.html");
-    });
-  });
 });
 
 app.post('/api/forum/post',(req,res,next)=>{
@@ -78,8 +55,8 @@ app.get("/api/forum/posts",(req,res,next)=>{
         if (err) throw err ;
         console.log(result);
         res.status(200).json(result);
+        });
     });
-});
 });
 
 module.exports = app;
