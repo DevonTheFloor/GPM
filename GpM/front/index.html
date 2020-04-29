@@ -24,25 +24,32 @@
     <main>
       <section class="col-lg-12">
         <figure class="col-lg-8 offset-lg-2 ">
-        <a href="sommaire.html" ><img class="img-fluid logoenter" src="images/logo/icon2.png" alt="icon groupomania"></a>  
+        <a href="sommaire.html" ><img class="img-fluid logoenter" src="images/logo/icon2.png" alt="icon groupomania" ></a>
         </figure>
       </section>
       <section>
         <button>Créer un compte</button>
         <button>Se connecter</button>
       </section>
-      <section>
-        <form action="/api/auth/signup" method="post">
+      <!--<section>
+        <form action="http://localhost:3030/api/auth/signup" method="post" enctype="application/json">
           <label>email : <input type="email" id="email"> </label>
-          <label>Mot de passe: <input type="password" id="pwd"> </label>
-          <button type="submit" >Créer un compte</button>
+          <label>Mot de passe: <input type="password" id="mdp"> </label>
+          <input type="submit" id="sigup" value="Créer un compteHTML5">
+        </form>
+      </section>-->
+      <section>
+        <form>
+          <label>email : <input type="email" id="email"> </label>
+          <label>Mot de passe: <input type="password" id="mdp"> </label>
+          <button id="signup">Créer un compte</button>
         </form>
       </section>
       <section>
         <form action="/api/auth/login" method="post">
           <label>email : <input type="email" id="email"> </label>
           <label>Mot de passe: <input type="password" id="pwd"> </label>
-          <button type="submit" >Se connecter</button>
+          <input type="submit" id="login" value="Se connecter">
         </form>
       </section>
     </main>
@@ -58,7 +65,7 @@
       </div>
     </footer>
   </div>
-  <script type="text/javascript" src=""></script>
+  <script type="text/javascript" src="JS/index.js"></script>
 </body>
 
 </html>
