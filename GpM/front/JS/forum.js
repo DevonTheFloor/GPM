@@ -1,16 +1,37 @@
 
 
 /**
- * requête ajax demande tous les message du forum
+ * requête ajax demande tous les messages du forum affichage dynamique
  * @param {string} url 
  */
-function seeforums(url){
-	const promise = fetch(url);
-	promise.then((forums)=>console.log(forums))
-	.catch(console.log("probleme connecxion serveur"));
+function seeforums(method,url){
+	let request = new XMLHttpRequest();
+  request.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      let response = JSON.parse(this.responseText);
+	  console.log(response);
+	  let message = document.getElementById('message');
+	  message.innerHTML="";
+	  response.forEach(forum => {
+		let div = document.createElement('div');
+		div.setAttribute("class","listForum");
+		message.appendChild(div);
+		let alink = document.createElement('a');
+		alink.setAttribute("href","/api/forum/post/:id");
+		div.appendChild(alink);
+		let titre = document.createElement('h4');
+		titre.textContent= "titre: "+forum.titre;
+		alink.appendChild(titre);
+		let auteur = document.createElement('p');
+		auteur.textContent= "posté par : "+forum.auteur;
+		div.appendChild(auteur);
+	  });
+    }
+  };
+  request.open(method,url);
+  request.send();
 };
-
-//window.onload('load',seeforums("/api/forum/posts"));
+seeforums("get","/api/forum/posts");
 
 /**
  * affiche le formulaire pour poster un message
@@ -31,19 +52,45 @@ poster.addEventListener("click", function(){
 	formulaire.appendChild(libele);
 	let titre = document.createElement('input');
 	titre.id = "titre";
+	titre.name= "titre";
 	libele.appendChild(titre);
 	let sujet = document.createElement('textarea');
-	sujet.id ="message";
+	sujet.id ="messag";
+	sujet.name = "message";
 	formulaire.appendChild(sujet);
 	let envoi = document.createElement('button');
 	envoi.id ="envoyer";
-	envoi.textContent = "Poster";
 	envoi.setAttribute("type","submit");
+	envoi.textContent = "Poster";
 	formulaire.appendChild(envoi);
 	
 });
 
+/*function forumPost(method,url){
 
+	let titreMessage = document.getElementById('titreMessage');
+	let titre = titreMessage.value;
+	let messageText = document.getElementById('messageText');
+	let message = messageText.value;
 
+let postForum = {
+	titre: titre,
+	auteur: "Lautre",
+	message: message
+}
 
+let newPost = JSON.stringify(postForum);
+	console.log("newpost = ",newPost);
+	let request = new XMLHttpRequest();
+  request.onload = function () {
+    if (this.readyState == 4 && this.status == 201) {
+	  console.log("connection serveur ok");
+	  };
+    }
+  request.open(method,url);
+  request.setRequestHeader("Content-Type", "application/json");
+  request.send(newPost);
+};
 
+let sendMessage = document.getElementById('envoyer');
+sendMessage.addEventListener("click",forumPost('post',"/api/forum/post"));*/

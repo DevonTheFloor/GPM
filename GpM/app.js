@@ -1,9 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const usersRouters = require('./routes/users');
-
+const usersRouter = require('./routes/users');
 var mysql = require('mysql');
+const connectdb = require('./queries/connectdb');
 
 const app = express();
 
@@ -19,23 +19,26 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 
-app.use('/api/auth',usersRouters);
 
 app.use('/test/',(req,res,next)=>{
   console.log("param", req.params.prama);
   res.status(200).json({message:"test reçu"});
 });
 
+app.use('/api/auth',usersRouter);
+
 app.post('/api/forum/post',(req,res,next)=>{
-  
-  connectdb.connect(function(err){
-    let auteur = "Oim";
-    console.log(req.body);
-    /*let titre = "Nouveau message";
-    let message = "Bonjour tout le monde";*/
-    if(err) throw err;
+
+    console.log("req.body =",req.body);
+
+    let titre = req.body.titre;
+    console.log(titre);
+    let auteur= "lautre";
+    console.log(auteur);
+    let message = req.body.message;
+
     console.log("Connecté mySQL on Xampp !!");
-    var sql = "INSERT INTO forum VALUES(NULL,?,'auteur',?,NOW())";
+    var sql = "INSERT INTO forum VALUES(NULL,?,?,?,NOW())";
     var inserts = [titre,auteur,message];
     sql = mysql.format(sql,inserts);
     connectdb.query(sql, function(err,result){
@@ -43,12 +46,10 @@ app.post('/api/forum/post',(req,res,next)=>{
         console.log("Message posté");
         res.redirect("/forum.html");
     });
-  });
 });
 
 app.get("/api/forum/posts",(req,res,next)=>{
-  connectdb.connect(function(err){
-    if(err) throw err;
+
     console.log("Connecté mySQL on Xampp !!");
     var qy1 = "SELECT * FROM forum";
     connectdb.query(qy1, function(err,result){
@@ -56,7 +57,7 @@ app.get("/api/forum/posts",(req,res,next)=>{
         console.log(result);
         res.status(200).json(result);
         });
-    });
+
 });
 
 module.exports = app;

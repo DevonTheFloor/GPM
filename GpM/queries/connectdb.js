@@ -1,4 +1,4 @@
-const mysql = require('mysql');
+var mysql = require('mysql');
 
 var connectdb = mysql.createConnection({
     host: "localhost",
@@ -6,5 +6,8 @@ var connectdb = mysql.createConnection({
     password: "",
     database: "gm"
   });
+  connectdb.connect(function(err) {
+    if (err) throw err
+  });
 
-module.exports = connectdb;
+  module.exports = connectdb;
