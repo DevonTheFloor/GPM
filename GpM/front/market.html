@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>GROUPO ManiA</title>
+  <title>GROUPO Market</title>
   <meta name="author" content="Your Name">
   <meta name="description" content="Example description">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,33 +23,36 @@
            <img class="img-fluid" src="images/logo/ban2.png">
           </div>
         </a>
+        <p>Market place interne, laissez votre annonce avec photo ainsi qu'un moyen de vous contactez. Les transactions financières sont interdites dans l'enceinte
+            de l'établissement.
+        </p>
       </div> 
+      
     </header>
+    <nav class="menuMarket">
+        <ol>
+            <li>Auto</li>
+            <li>Maison</li>
+            <li>Informatique</li>
+            <li>Autre</li>
+        </ol>
+    </nav>
+    <button id="addAnnonce">Poster une annonce</button>
 
     <main>
       <div class="row justify-content-lg-center " >
-        <section class=" col-lg-6 of">
-          <p>  Thread de discussion Groupomania, soyez libre de parler de ce qu'il vous plaîra en lien ou non avec le travail.</p>
+        <section id="affiMarket" class=" col-lg-6 of formForum">
+         
         </section>
       </div>
-      <section class="justify-content-lg-center formForum chat"  id="message">x</section>
-       
-      
     </main>
     
     <footer class="messrezo justify-content-lg-center">
       <div class="col-lg-12">
-        <form action="/api/rezo/post" method="post" >
-          <!--enctype="multipart/form-data"-->
-         <!--<input type="file" id="pj" name="pj">--> 
-       <label>auteur :  <input type="text" id="auteur" name="auteur"></label>
-          <label>Message: <textarea id="message" name="message"></textarea></label>
-          <button type="submit">Send</button>
-        </form>
       </div>
     </footer>
   </div>
-  <script type="text/javascript" src="JS/rezo.js"></script>
+  <script type="text/javascript" src="JS/market.js"></script>
 </body>
 
 </html>

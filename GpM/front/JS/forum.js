@@ -1,5 +1,3 @@
-
-
 /**
  * requête ajax demande tous les messages du forum affichage dynamique
  * @param {string} url 
@@ -55,7 +53,7 @@ poster.addEventListener("click", function(){
 	titre.name= "titre";
 	libele.appendChild(titre);
 	let sujet = document.createElement('textarea');
-	sujet.id ="messag";
+	sujet.id ="message";
 	sujet.name = "message";
 	formulaire.appendChild(sujet);
 	let envoi = document.createElement('button');
@@ -65,32 +63,3 @@ poster.addEventListener("click", function(){
 	formulaire.appendChild(envoi);
 	
 });
-
-/*function forumPost(method,url){
-
-	let titreMessage = document.getElementById('titreMessage');
-	let titre = titreMessage.value;
-	let messageText = document.getElementById('messageText');
-	let message = messageText.value;
-
-let postForum = {
-	titre: titre,
-	auteur: "Lautre",
-	message: message
-}
-
-let newPost = JSON.stringify(postForum);
-	console.log("newpost = ",newPost);
-	let request = new XMLHttpRequest();
-  request.onload = function () {
-    if (this.readyState == 4 && this.status == 201) {
-	  console.log("connection serveur ok");
-	  };
-    }
-  request.open(method,url);
-  request.setRequestHeader("Content-Type", "application/json");
-  request.send(newPost);
-};
-
-let sendMessage = document.getElementById('envoyer');
-sendMessage.addEventListener("click",forumPost('post',"/api/forum/post"));*/
