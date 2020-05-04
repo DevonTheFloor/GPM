@@ -62,7 +62,7 @@ creer.addEventListener("click", function(){
     button.setAttribute("type","submit");
     button.textContent="Créer un compte";
     form.appendChild(button);
-    //connected.style.display="none";
+
 });
 
 let loguer = document.getElementById("login");
