@@ -95,6 +95,13 @@ loguer.addEventListener("click", function(){
     form.appendChild(button);
 
 });
+
+let redirect = ()=>{
+    const promise = fetch();
+    promise
+    .then(console.log("token :",token));
+
+};
 /* 
 
 */
